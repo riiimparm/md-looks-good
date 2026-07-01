@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "md-looks-good",
+  "version": "0.1.0",
+  "description": "Markdownファイルを目次・検索・リンクグラフ付きのきれいなビューアに整形します",
+  "permissions": ["storage", "tabs", "scripting", "unlimitedStorage", "downloads"],
+  "host_permissions": [
+    "file:///*",
+    "https://raw.githubusercontent.com/*",
+    "https://gist.githubusercontent.com/*"
+  ],
+  "background": {
+    "service_worker": "background/index.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "file:///*",
+        "https://raw.githubusercontent.com/*",
+        "https://gist.githubusercontent.com/*"
+      ],
+      "js": ["content/index.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

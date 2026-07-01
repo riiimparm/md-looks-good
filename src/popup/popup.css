@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 420px;
+  height: 480px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #1a1a1a;
+  color: #eee;
+}
+
+#mlg-popup-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #333;
+}
+
+header h1 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+#mlg-popup-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+#mlg-reset-graph {
+  background: #333;
+  color: #eee;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+#mlg-reset-graph:hover {
+  background: #444;
+}
+
+#cy {
+  flex: 1;
+  width: 100%;
+}
+
+#mlg-empty-state {
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+}
+
+#mlg-popup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid #333;
+  font-size: 0.72rem;
+}
+
+#mlg-popup-actions button {
+  background: #333;
+  color: #eee;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+#mlg-popup-actions button:hover {
+  background: #444;
+}
+
+#mlg-prune-old-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #999;
+}
+
+#mlg-prune-old-days {
+  width: 3.2rem;
+  background: #222;
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.72rem;
+}
+
+#mlg-tabs {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.5rem 0.8rem 0;
+}
+
+.mlg-tab-button {
+  background: transparent;
+  color: #999;
+  border: 1px solid #333;
+  border-radius: 6px 6px 0 0;
+  border-bottom: none;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.mlg-tab-button:hover {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.mlg-tab-button.mlg-tab-active {
+  background: #333;
+  color: #eee;
+  border-color: #444;
+}
+
+#mlg-filter-toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  color: #999;
+  cursor: pointer;
+  align-self: center;
+}
+
+#mlg-filter-toggle input {
+  cursor: pointer;
+}

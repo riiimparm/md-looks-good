@@ -1,0 +1,28 @@
+{
+  "name": "md-looks-good",
+  "version": "0.1.0",
+  "description": "Markdownファイルをきれいに整形して表示するChrome拡張機能",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "watch": "node esbuild.config.mjs --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fokke-/bartender.js": "^3.2.1",
+    "cytoscape": "^3.30.2",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.1.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "mermaid": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.283",
+    "@types/cytoscape": "^3.21.7",
+    "@types/markdown-it": "^14.1.2",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3"
+  }
+}

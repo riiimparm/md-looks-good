@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>md-looks-good</title>
+    <link rel="stylesheet" href="popup/popup.css" />
+  </head>
+  <body>
+    <div id="mlg-popup-root">
+      <header>
+        <h1>リンクグラフ</h1>
+        <div id="mlg-popup-toolbar">
+          <span id="mlg-node-count"></span>
+          <button id="mlg-reset-graph" title="グラフをリセット">リセット</button>
+        </div>
+      </header>
+      <div id="mlg-tabs">
+        <button class="mlg-tab-button mlg-tab-active" data-view="link">リンク構造</button>
+        <button class="mlg-tab-button" data-view="cluster">コード類似クラスタ</button>
+        <label id="mlg-filter-toggle">
+          <input type="checkbox" id="mlg-filter-current" checked />
+          現在のファイルの島のみ
+        </label>
+      </div>
+      <div id="mlg-popup-actions">
+        <button id="mlg-export-json" title="JSONとしてエクスポート">JSON書き出し</button>
+        <button id="mlg-export-png" title="PNGとしてエクスポート">PNG書き出し</button>
+        <button id="mlg-prune-isolated" title="孤立ノードを削除">孤立ノード削除</button>
+        <div id="mlg-prune-old-group">
+          <input id="mlg-prune-old-days" type="number" min="1" value="30" />
+          <span>日より古いノードを削除</span>
+          <button id="mlg-prune-old" title="指定日数より古いノードを削除">実行</button>
+        </div>
+      </div>
+      <div id="cy"></div>
+      <p id="mlg-empty-state" hidden>
+        まだ記録されたファイルがありません。この拡張機能で .md ファイルを開くとここに表示されます。
+      </p>
+    </div>
+    <script src="popup/index.js"></script>
+  </body>
+</html>

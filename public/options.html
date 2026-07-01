@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>md-looks-good 設定</title>
+    <link rel="stylesheet" href="options/options.css" />
+  </head>
+  <body>
+    <div id="mlg-options-root">
+      <h1>md-looks-good 設定</h1>
+
+      <section>
+        <h2>ファイルアクセスについて</h2>
+        <p>
+          ローカルの <code>.md</code> ファイルを整形するには、
+          <code>chrome://extensions</code> でこの拡張機能の詳細を開き、
+          「ファイルの URL へのアクセスを許可する」を有効にしてください。
+        </p>
+      </section>
+
+      <section>
+        <h2>プリセット</h2>
+        <div id="mlg-preset-grid"></div>
+      </section>
+
+      <section>
+        <h2>配色</h2>
+        <form id="mlg-theme-form">
+          <div class="mlg-field">
+            <label for="backgroundColor">背景色</label>
+            <input type="color" id="backgroundColor" name="backgroundColor" />
+          </div>
+          <div class="mlg-field">
+            <label for="textColor">文字色</label>
+            <input type="color" id="textColor" name="textColor" />
+          </div>
+          <div class="mlg-field">
+            <label for="headingColor">見出し色</label>
+            <input type="color" id="headingColor" name="headingColor" />
+          </div>
+          <div class="mlg-field">
+            <label for="linkColor">リンク色</label>
+            <input type="color" id="linkColor" name="linkColor" />
+          </div>
+          <div class="mlg-field">
+            <label for="boldColor">太字色</label>
+            <input type="color" id="boldColor" name="boldColor" />
+          </div>
+          <div class="mlg-field">
+            <label for="codeBackgroundColor">コード背景色</label>
+            <input type="color" id="codeBackgroundColor" name="codeBackgroundColor" />
+          </div>
+          <div class="mlg-field">
+            <label for="codeTextColor">コード文字色</label>
+            <input type="color" id="codeTextColor" name="codeTextColor" />
+          </div>
+        </form>
+      </section>
+
+      <section>
+        <h2>文字設定</h2>
+        <div class="mlg-field mlg-field-range">
+          <label for="fontSize">フォントサイズ (<span id="fontSize-value"></span>px)</label>
+          <input type="range" id="fontSize" name="fontSize" min="12" max="24" step="1" />
+        </div>
+        <div class="mlg-field mlg-field-range">
+          <label for="lineHeight">行間 (<span id="lineHeight-value"></span>)</label>
+          <input type="range" id="lineHeight" name="lineHeight" min="1.2" max="2.4" step="0.1" />
+        </div>
+      </section>
+
+      <section>
+        <div id="mlg-preview">
+          <h3>見出しプレビュー</h3>
+          <p>
+            本文テキストと<strong>太字テキスト</strong>、
+            <a href="#">リンクテキスト</a>、
+            <code>インラインコード</code> のプレビューです。
+          </p>
+        </div>
+        <div class="mlg-actions">
+          <button type="button" id="mlg-reset-theme">初期値に戻す</button>
+          <span id="mlg-save-status" role="status"></span>
+        </div>
+      </section>
+    </div>
+    <script src="options/index.js"></script>
+  </body>
+</html>
