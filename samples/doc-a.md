@@ -113,3 +113,22 @@ graph TD
 ## まとめ
 
 詳細は [ドキュメントB](./doc-b.md) を参照してください。また [GitHubのraw](https://raw.githubusercontent.com/octocat/Hello-World/master/README.md) ページの動作確認にも利用できます。
+
+## 生HTMLの例
+
+<div align="center">
+  <strong>中央寄せのHTMLブロック</strong><br>
+  <sub>details/summary も使えます</sub>
+</div>
+
+<details>
+<summary>折りたたみセクション</summary>
+
+中身は **Markdown** ではなくHTMLとして描画されます。
+
+</details>
+
+インラインでも <kbd>Ctrl</kbd> + <kbd>F</kbd> のように書けます。
+
+<script>alert('これは実行されません')</script>
+<img src="x" onerror="alert('これも実行されません')">

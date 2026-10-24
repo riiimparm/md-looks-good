@@ -4,11 +4,22 @@ import taskLists from "markdown-it-task-lists";
 import { highlightCode } from "./highlight";
 import { applyMarkdownExtensions } from "./mdExtensions";
 
+const dangerousSchemeRe = /^(javascript|data|vbscript):/i;
+
+type SanitizingElement = { setHTML(html: string, options: { sanitizer: object }): void };
+
+// 生HTMLの無害化はネイティブ Sanitizer APIに任せる。未対応ブラウザでは
+// サニタイズ手段がないので、生HTMLはエスケープ表示にフォールバックする。
+const sanitizerCtor = (globalThis as { Sanitizer?: new (config: object) => object }).Sanitizer;
+const canSanitizeHtml =
+  typeof sanitizerCtor === "function" &&
+  typeof (Element.prototype as Partial<SanitizingElement>).setHTML === "function";
+
 export function createMarkdownIt(): MarkdownIt {
   const md = new MarkdownIt({
-    html: false,
+    html: canSanitizeHtml,
     linkify: true,
-    breaks: false,
+    breaks: true,
   })
     .use(footnote)
     .use(taskLists, { enabled: true, label: true });
@@ -17,7 +28,6 @@ export function createMarkdownIt(): MarkdownIt {
 
   // javascript: 等の危険なスキームを明示的に拒否する
   const defaultValidateLink = md.validateLink.bind(md);
-  const dangerousSchemeRe = /^(javascript|data|vbscript):/i;
   md.validateLink = (url: string) => {
     if (dangerousSchemeRe.test(url.trim())) return false;
     return defaultValidateLink(url);
@@ -73,7 +83,19 @@ export function replaceDomWithRendered(html: string): HTMLElement {
 
   const root = document.createElement("div");
   root.id = "mlg-root";
-  root.innerHTML = `<div id="mlg-content">${html}</div>`;
+
+  const content = document.createElement("div");
+  content.id = "mlg-content";
+  if (canSanitizeHtml) {
+    // 空configは「安全でない要素・属性以外はすべて許可」。既定のSanitizerは
+    // class/id/details等まで落としてしまい描画が壊れるため使わない。
+    (content as unknown as SanitizingElement).setHTML(html, {
+      sanitizer: new sanitizerCtor!({}),
+    });
+  } else {
+    content.innerHTML = html;
+  }
+  root.appendChild(content);
   document.body.appendChild(root);
 
   return root;
